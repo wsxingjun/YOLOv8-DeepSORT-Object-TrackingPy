@@ -1,0 +1,128 @@
+修改镜像路径：
+https://blog.csdn.net/sjjsaaaa/article/details/110096059
+
+pip install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+临时修改：
+修改镜像源：（直接在命令行输入）
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+在输入：conda config --set show_channel_urls yes 就修改完成了！
+
+
+永久修改：
+
+Linux下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文件夹要加“.”，表示是隐藏文件夹)。
+
+内容如下：
+
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=mirrors.aliyun.com
+
+windows下，直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，新建文件pip.ini。内容同上
+
+=============================
+
+环境位置:
+C:\Users\shaun\.conda\envs\YOLOv8-DeepSORT-Object-TrackingPy.7z
+
+部署记录文件位置：
+D:\__ai\__deepsort\YOLOv8-DeepSORT-Object-Tracking\__doc\tmp_env_win_YOLOv8-DeepSORT-Object-Tracking.txt
+
+====================
+实现源码git仓库位置:
+https://github.com/MuhammadMoinFaisal/YOLOv8-DeepSORT-Object-Tracking
+
+
+本地代码位置：
+D:\__ai\__deepsort\YOLOv8-DeepSORT-Object-Tracking\__code\YOLOv8-DeepSORT-Object-Tracking
+====================
+
+
+谷歌原始deepsort 源码下载地址：
+
+https://drive.google.com/drive/folders/1kna8eWGrSfzaR6DtNJ8_GchGgPMv3VC8
+
+下载文件及路径：
+D:\__ai\__deepsort\YOLOv8-DeepSORT-Object-Tracking\__code
+deep_sort_pytorch-20240724T025234Z-001.zip
+=======================
+
+
+conda create -n YOLOv8-DeepSORT-Object-TrackingPy python=3.8
+
+conda activate YOLOv8-DeepSORT-Object-TrackingPy
+
+requirements.txt 
+
+
+==============
+
+
+运行报错：
+
+(YOLOv8-DeepSORT-Object-TrackingPy) PS D:\__ai\__deepsort\YOLOv8-DeepSORT-Object-Tracking\__code\YOLOv8-DeepSORT-Object-Tracking\ultralytics\yolo\v8\detect> python predict.py model=yolov8l.pt source="test3.mp4" show=True
+Traceback (most recent call last):
+  File "predict.py", line 4, in <module>
+    import torch
+  File "C:\Users\shaun\.conda\envs\YOLOv8-DeepSORT-Object-TrackingPy\lib\site-packages\torch\__init__.py", line 143, in <module>
+    raise err
+OSError: [WinError 126] 找不到指定的模块。 
+Error loading "C:\Users\shaun\.conda\envs\YOLOv8-DeepSORT-Object-TrackingPy\lib\site-packages\torch\lib\shm.dll" or one of its dependencies.
+
+
+【解决办法】
+更换pytoch 版本 
+
+离线更换
+
+位置在：
+D:\__ai
+
+本地下载，直接安装：
+cd D:\__ai
+pip install torch-1.13.1+cu116-cp38-cp38-win_amd64.whl
+
+pip install torchvision-0.14.1+cu116-cp38-cp38-win_amd64.whl
+
+==============================
+
+报错：
+ModuleNotFoundError: No module named 'easydict'
+
+解决办法：
+pip install easydict
+========================
+
+【报错】
+
+AttributeError: module 'numpy' has no attribute 'float'.
+`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+
+【解决办法】
+由于 numpy 新版已经没有 float 属性了，降版本解决 pip install numpy==1.23.5
+
+pip install numpy==1.23.5 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+=====================
+
+python predict.py model=yolov8l.pt source="test3.mp4" 
+
+python predict.py model=yolov8l.pt source="test3.mp4" show=True
+
+yolo task=detect predict model=yolov8l.pt source="test3.mp4" show=True
+
+
+
+
+
+
+
